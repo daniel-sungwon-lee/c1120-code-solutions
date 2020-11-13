@@ -1,0 +1,19 @@
+.row {
+  display: flex;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+img {
+  width: 100%;
+}
+.column2 {
+  flex-basis: calc(100%/2);
+}
+.column3 {
+  flex-basis: calc(100%/3);
+}
+.column4 {
+  flex-basis: calc(100%/4);
+}
