@@ -25,6 +25,7 @@ section.header {
   border: none;
   color: lightgray;
   cursor: pointer;
+  text-decoration: none;
 }
 #contact-us {
   background-color:#294464;
