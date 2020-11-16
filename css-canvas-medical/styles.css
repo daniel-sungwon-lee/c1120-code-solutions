@@ -43,7 +43,7 @@ section.header {
   height: 387px;
   background-image: url(./images/hero.jpg);
   background-size: cover;
-  margin: 4rem 5rem;
+  margin: 3rem 5rem;
   background-position: center;
   position: relative;
   filter: opacity(95%);
