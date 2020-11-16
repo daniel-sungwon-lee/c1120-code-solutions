@@ -38,11 +38,16 @@ section.header {
   background-color: white;
   color: black;
 }
+.image-main {
+  display: flex;
+  justify-content: center;
+}
 .background1 {
   background-image: url(../images/product/product-header.jpg);
   background-size: cover;
   background-position: center;
-  height: 395px;
+  height: 400px;
+  width: 50rem;
   margin: 6rem 5rem 3rem;
   position: relative;
 }
@@ -94,12 +99,20 @@ h2 {
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
+  color: #707070;
 }
 #text-column {
   margin: 3rem 0;
 }
 .text-main {
   margin: 3rem;
+}
+.small {
+  color: #707070;
+}
+#small {
+  color: #707070;
+  margin-top: -8px;
 }
 .learn-more {
   border: none;
@@ -171,7 +184,6 @@ h2 {
 .info {
   color: white;
   margin-top: 2.5rem;
-  font-size: 13px;
 }
 .footer-button {
   background-color: #525351;
@@ -192,7 +204,7 @@ h4 {
   color: white;
 }
 #info {
-  margin: 2px;
+  margin: 1px;
 }
 .canvas-white {
   width: 130px;

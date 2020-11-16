@@ -39,12 +39,14 @@ section.header {
   justify-content: center;
 }
 .background1 {
-  width: 90%;
-  height: 480px;
+  width: 50rem;
+  height: 387px;
   background-image: url(./images/hero.jpg);
   background-size: cover;
-  margin: 60px 0;
+  margin: 4rem 5rem;
+  background-position: center;
   position: relative;
+  filter: opacity(95%);
 }
 .overlay {
   background: rgba(0,0,0,0.15);
@@ -55,24 +57,31 @@ section.header {
   bottom: 0;
 }
 .text {
-  width: 50%;
+  width: 24rem;
   position: absolute;
   color: white;
   position: absolute;
   left: 3.3rem;
-  top: 2rem;
+  top: 1.5rem;
 }
 h1 {
   font-size: 30px;
   font-family:'Tiempos Headline',sans-serif;
   font-style: normal;
   font-weight: 500;
+  margin-bottom: 0;
 }
 p {
   line-height: 1.6;
   font-family: "Avenir",sans-serif;
   font-style: normal;
   font-weight: 500;
+  font-size: 12px;
+  color: #707070;
+}
+#top-small-text {
+  margin-bottom: 1.2rem;
+  color: white;
 }
 #get-started {
   background-color:#294464;
@@ -85,7 +94,7 @@ p {
 .box2 {
   background-color:#FAFAFA;
   margin: 0 30px;
-  height: 27rem;
+  height: 25rem;
 }
 .row1 {
   text-align: center;
@@ -96,20 +105,26 @@ p {
 .row2 {
   display: flex;
   text-align: center;
-  justify-content: space-around;
-  padding-bottom: 90px;
+  justify-content: space-evenly;
 }
 h3 {
   font-family: "Avenir",sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 15px;
   margin: 2rem;
+  color: #707070;
 }
 h2 {
   font-family:'Tiempos Headline',sans-serif;
   font-style: normal;
   font-weight: 500;
+  margin-bottom: 0;
+  color: #707070;
+}
+#middle-small-text {
+  width: 23rem;
+  margin: 10px auto
 }
 .box3 {
   display: flex;
@@ -144,7 +159,6 @@ h2 {
 .info {
   color: white;
   margin-top: 2.5rem;
-  font-size: 13px;
 }
 .footer-button {
   background-color: #525351;
@@ -165,10 +179,8 @@ h4 {
   color: white;
 }
 #info {
-  margin: 2px;
-}
-#small {
-  font-size: 13px;
+  margin: 1px;
+  color: white;
 }
 .canvas-white {
   width: 130px;
@@ -186,7 +198,7 @@ h4 {
   font-family: "Avenir", sans-serif;
   font-style: normal;
   font-size: 14px;
-  color: black;
+  color: #707070;
   border: none;
   cursor: pointer;
   margin: 0 10px;

@@ -38,6 +38,10 @@ section.header {
   background-color: white;
   color: black;
 }
+.image {
+  display: flex;
+  justify-content: center;
+}
 .background1 {
   background-image: url(../images/implementation/implementation-header.jpg);
   background-position: center;
@@ -56,7 +60,7 @@ section.header {
   background: rgba(0,0,0,0.15);
 }
 .text {
-  width: 47%;
+  width: 49%;
   color: white;
   position: absolute;
   left: 3.3rem;
@@ -82,6 +86,7 @@ p {
 .list {
   padding-bottom: 7.9rem;
   border-bottom: solid 1.5px #F7F7F8;
+  margin-top: -1rem;
 }
 h2 {
   font-family:'Tiempos Headline',sans-serif;
@@ -89,6 +94,7 @@ h2 {
   font-weight: 500;
   padding: 3rem 0 0.5rem;
   text-align: center;
+  color: #707070;
 }
 li {
   font-family: "Avenir",sans-serif;
@@ -100,6 +106,7 @@ li {
 ol {
   counter-reset: custom-numbers;
   list-style: none;
+  color: #707070;
 }
 ol li {
   counter-increment: custom-numbers;
@@ -124,6 +131,10 @@ ol li::before {
 }
 #question {
   margin-top: -3rem;
+}
+#small {
+  margin-top: -1rem;
+  color: #707070;
 }
 #get-started {
   background-color:#294464;
@@ -180,7 +191,7 @@ h4 {
   color: white;
 }
 #info {
-  margin: 2px;
+  margin: 1px;
 }
 .canvas-white {
   width: 130px;
