@@ -1,0 +1,68 @@
+.row {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 4rem;
+}
+.column1 {
+  text-align: center;
+  width: 37rem;
+  margin-top: -1rem;
+}
+h1 {
+  font-family: 'Karla';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  word-spacing: 5px;
+  margin-bottom: 1.3rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+p {
+  font-family: 'Karla';
+  font-style: normal;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.9;
+}
+h4 {
+  font-family: 'Karla';
+  font-style: normal;
+  font-weight: 700;
+  margin: 0;
+  word-spacing: 1px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.text {
+  width: 16rem;
+  margin: 0 2rem;
+}
+.column2 {
+  position: relative;
+  display: flex;
+}
+img {
+  width: 100px;
+  position: relative;
+  bottom: 25px;
+  left: 25px;
+}
+button {
+  background-color: white;
+  border: solid #DA716B 2px;
+  width: 11rem;
+  height: 39px;
+  font-family: "Karla";
+  font-weight: bold;
+  color: #DA716B;
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-top: -1rem;
+}
+button:hover {
+  color: white;
+  background-color: #DA716B;
+  border: none;
+  cursor: pointer;
+}
