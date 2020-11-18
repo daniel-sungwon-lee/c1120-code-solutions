@@ -50,6 +50,7 @@ section.header {
   width: 50rem;
   margin: 6rem 5rem 3rem;
   position: relative;
+  filter: opacity(95%);
 }
 .overlay {
   background: rgba(0,0,0,0.15);

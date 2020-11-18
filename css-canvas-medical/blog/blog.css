@@ -1,9 +1,10 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin: 35px 50px 20px;
+}
 header {
   border-bottom: solid 1.5px #F7F7F8;
-}
-section.header {
-  display: flex;
-  margin: 35px 50px 20px;
 }
 .anchors {
   display: flex;
@@ -27,6 +28,9 @@ section.header {
   cursor: pointer;
   text-decoration: none;
 }
+#blog {
+  color: #6D9DB9;
+}
 #contact-us {
   background-color:#294464;
   border-radius: 5px;
@@ -38,90 +42,89 @@ section.header {
   background-color: white;
   color: black;
 }
-.image {
-  display: flex;
-  justify-content: center;
-}
-.background1 {
-  background-image: url(../images/implementation/implementation-header.jpg);
-  background-position: center;
-  background-size: cover;
-  margin: 6rem 5rem 3rem;
-  height: 400px;
-  width: 50rem;
-  position: relative;
-  filter: opacity(95%);
-}
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background: rgba(0,0,0,0.15);
-}
-.text {
-  width: 49%;
-  color: white;
-  position: absolute;
-  left: 3.3rem;
-  top: 3rem;
-}
-h1 {
-  font-size: 28px;
-  font-family:'Tiempos Headline',sans-serif;
-  font-style: normal;
-  font-weight: 500;
-}
-p {
-  line-height: 1.6;
-  font-size: 12px;
-  font-family: "Avenir",sans-serif;
-  font-style: normal;
-  font-weight: 500;
-}
-.row {
-  margin: 0 auto;
-  width: 34rem;
-}
-.list {
-  padding-bottom: 7.9rem;
-  border-bottom: solid 1.5px #F7F7F8;
-  margin-top: -1rem;
+.main-text {
+  text-align: center;
+  margin: 6rem 0 0;
 }
 h2 {
   font-family:'Tiempos Headline',sans-serif;
-  font-style: normal;
   font-weight: 500;
-  padding: 3rem 0 0.5rem;
-  text-align: center;
+  font-size: 25px;
   color: #707070;
 }
-li {
+p {
   font-family: "Avenir",sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 17px;
-  padding: 2rem 0 0.5rem;
-}
-ol {
-  counter-reset: custom-numbers;
-  list-style: none;
+  font-size: 12px;
   color: #707070;
 }
-ol li {
-  counter-increment: custom-numbers;
+form {
+  text-align: center;
 }
-ol li::before {
-  content: counter(custom-numbers) ". ";
-  font-family:'Tiempos Headline',sans-serif;
-  font-style: normal;
+.email-text {
+  border: none;
+  text-align: center;
+  width: 25rem;
+  height: 4rem;
+  outline: none;
+  border-bottom: solid 2px #DCDCDC;
+  padding-top: 24px;
+}
+input::placeholder {
+  font-family: "Avenir",sans-serif;
   font-weight: 500;
-  font-size: 24px;
-  padding-right: 4px;
+  font-size: 20px;
+  color: #DCDCDC;
 }
-.list-text {
-  padding-right: 50px;
+.subscribe-button {
+  background-color: #294464;
+  border-radius: 4px;
+  color: white;
+  width: 144px;
+  height: 44px;
+  border: none;
+  outline: none;
+  font-family: 'Avenir';
+  font-size: 16px;
+  margin: 45px 0;
+}
+.subscribe-button:hover {
+  background-color: white;
+  color: #294464;
+  cursor: pointer;
+}
+.images {
+  padding-bottom: 3rem;
+  border-bottom: solid 1.5px #F7F7F8;
+}
+.row {
+  display: flex;
+  margin: 0 7rem 30px;
+  justify-content: center;
+}
+.container {
+  margin: 0 auto;
+}
+.all-imgs {
+  width: 21rem;
+  height: 12rem;
+  overflow: hidden;
+}
+.img {
+  max-width: 100%;
+  position: relative;
+  bottom: 20px;
+}
+.text {
+  width: 17rem;
+}
+.img-text {
+  color: #315773;
+  font-size: 22px;
+  line-height: 1.1;
+  margin: 10px 0rem;
+}
+#fix {
+  width: 20rem;
 }
 .box1 {
   display: flex;
@@ -134,8 +137,9 @@ ol li::before {
   margin-top: -3rem;
 }
 #small {
-  margin-top: -1rem;
+  margin-top: -15px;
   color: #707070;
+  line-height: 1.6;
 }
 #get-started {
   background-color:#294464;
@@ -147,7 +151,7 @@ ol li::before {
 }
 .box2 {
   background-color: #525351;
-  padding:50px 0;
+  padding:49px 0 50px;
   margin: 0 30px;
   display: flex;
   justify-content: space-around;
@@ -193,6 +197,8 @@ h4 {
 }
 #info {
   margin: 1px;
+  color: white;
+  line-height: 1.6;
 }
 .canvas-white {
   width: 130px;
@@ -215,6 +221,7 @@ h4 {
   cursor: pointer;
   margin: 0 10px;
 }
-#implementation {
-  color:  #6D9DB9;
+.ready-question {
+  padding: 3rem 0 0.5rem;
+  font-size: 1.5rem;
 }
