@@ -85,7 +85,7 @@ input::placeholder {
   outline: none;
   font-family: 'Avenir';
   font-size: 16px;
-  margin: 45px 0;
+  margin: 45px 0 52px;
 }
 .subscribe-button:hover {
   background-color: white;
