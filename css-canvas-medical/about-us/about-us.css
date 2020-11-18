@@ -1,9 +1,10 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin: 35px 50px 20px;
+}
 header {
   border-bottom: solid 1.5px #F7F7F8;
-}
-section.header {
-  display: flex;
-  margin: 35px 50px 20px;
 }
 .anchors {
   display: flex;
@@ -27,6 +28,9 @@ section.header {
   cursor: pointer;
   text-decoration: none;
 }
+#about-us {
+  color: #6D9DB9;
+}
 #contact-us {
   background-color:#294464;
   border-radius: 5px;
@@ -43,7 +47,7 @@ section.header {
   justify-content: center;
 }
 .background1 {
-  background-image: url(../images/implementation/implementation-header.jpg);
+  background-image: url(../images/about-us/about-us-header.jpg);
   background-position: center;
   background-size: cover;
   margin: 6rem 5rem 3rem;
@@ -60,18 +64,19 @@ section.header {
   right: 0;
   background: rgba(0,0,0,0.15);
 }
-.text {
-  width: 49%;
+.top-text {
+  width: 52%;
   color: white;
   position: absolute;
   left: 3.3rem;
-  top: 3rem;
+  top: 6rem;
 }
 h1 {
   font-size: 28px;
   font-family:'Tiempos Headline',sans-serif;
   font-style: normal;
   font-weight: 500;
+  margin-bottom: 15px;
 }
 p {
   line-height: 1.6;
@@ -80,61 +85,103 @@ p {
   font-style: normal;
   font-weight: 500;
 }
-.row {
-  margin: 0 auto;
-  width: 34rem;
+#believe {
+  color: #707070;
+  text-align: center;
+  margin-top: 0;
 }
-.list {
-  padding-bottom: 7.9rem;
-  border-bottom: solid 1.5px #F7F7F8;
-  margin-top: -1rem;
+.believe-small-text {
+  width: 28rem;
+  margin: auto;
+  color: #707070;
 }
-h2 {
+.blue {
+  color:#6D9DB9;
+  font-weight: 700;
+}
+.row2 {
+  background-color: #FBFBFB;
+  padding: 2rem 0;
+  margin: 4rem 30px 0;
+}
+h3 {
   font-family:'Tiempos Headline',sans-serif;
-  font-style: normal;
   font-weight: 500;
-  padding: 3rem 0 0.5rem;
+  font-size: 22px;
+  margin: 10px 0 -3px;
+  color: #707070;
+}
+.our-team {
+  text-align: center;
+  margin: 1rem 0 1.5rem;
+}
+.team {
+  display: flex;
+  flex-wrap: wrap;
+  width: 48rem;
+  margin: auto;
+}
+.member-img {
+  width: 9rem;
+  border-radius: 50%;
+}
+.member {
+  flex-basis: calc(100%/3);
+  text-align: center;
+  margin: 7px 0;
+}
+.member-text {
   text-align: center;
   color: #707070;
 }
-li {
-  font-family: "Avenir",sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 17px;
-  padding: 2rem 0 0.5rem;
+#jessica {
+ padding: 0 1rem;
 }
-ol {
-  counter-reset: custom-numbers;
-  list-style: none;
+.row3 {
+  background-color: #FBFBFB;
+  margin: 0 30px;
+  padding: 1rem 0 3rem;
+}
+h2 {
   color: #707070;
-}
-ol li {
-  counter-increment: custom-numbers;
-}
-ol li::before {
-  content: counter(custom-numbers) ". ";
   font-family:'Tiempos Headline',sans-serif;
-  font-style: normal;
   font-weight: 500;
-  font-size: 24px;
-  padding-right: 4px;
 }
-.list-text {
-  padding-right: 50px;
+.board {
+  text-align: center;
+  font-size: 25px;
+  margin-bottom: 7px;
+}
+.clinicians {
+  display: flex;
+  justify-content: space-evenly;
+}
+.clinician-name {
+  margin: 2rem 0;
+  text-align: center;
+}
+.row4 {
+  width: 28rem;
+  margin: 3rem auto 4rem;
+}
+.our-story {
+  text-align: center;
+}
+footer {
+  border-top: solid 1.5px #F7F7F8;
 }
 .box1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 0 100px;
-  padding: 20px 0;
+  padding: 67px 0 20px;
 }
 #question {
   margin-top: -3rem;
 }
 #small {
-  margin-top: -1rem;
+  margin-top: -7px;
   color: #707070;
 }
 #get-started {
@@ -144,10 +191,12 @@ ol li::before {
   border-radius: 5px;
   cursor: pointer;
   color: white;
+  position: relative;
+  bottom: 23px;
 }
 .box2 {
   background-color: #525351;
-  padding:50px 0;
+  padding:49px 0 50px;
   margin: 0 30px;
   display: flex;
   justify-content: space-around;
@@ -214,7 +263,4 @@ h4 {
   border: none;
   cursor: pointer;
   margin: 0 10px;
-}
-#implementation {
-  color:  #6D9DB9;
 }
