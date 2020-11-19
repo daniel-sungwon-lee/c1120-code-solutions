@@ -13,7 +13,7 @@ section.header {
   align-items: baseline;
 }
 .anchor {
-  margin: 0 1rem;
+  margin: 0 12px;
   color: lightgray;
 }
 .canvas-blue{
@@ -26,6 +26,11 @@ section.header {
   color: lightgray;
   cursor: pointer;
   text-decoration: none;
+  font-family: 'Avenir';
+  font-size: 14px;
+}
+#contact-us-button {
+  margin-left: 0;
 }
 #contact-us {
   background-color:#294464;
