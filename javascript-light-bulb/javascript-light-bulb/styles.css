@@ -1,0 +1,25 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+.background.on {
+  background-color:#FEF9F1;
+}
+.light-bulb {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+}
+.light-bulb.on{
+  background-color: #FAEA84;
+  box-shadow: 0rem 0rem 5rem 3px #FAEA84;
+}
+.background.off  {
+  background-color: black;
+}
+.light-bulb.off {
+  background-color: black;
+}
