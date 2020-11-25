@@ -1,0 +1,68 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  flex-direction: column;
+}
+.sentence {
+  width: 100%;
+  text-align: center;
+}
+.button {
+  position: absolute;
+  bottom: 18rem;
+}
+.button.hidden {
+  display: none;
+}
+.play-again-button{
+  border: none;
+  background-color: #1ECE21;
+  width: 11rem;
+  height: 3rem;
+  font-size: 22px;
+  font-family: 'Courier Prime',monospace;
+  border-radius: 3px;
+  color: white;
+  outline: none;
+}
+.play-again-button:hover{
+  cursor: pointer;
+}
+h1 {
+  margin: 0;
+  font-family:'Courier Prime', monospace; ;
+}
+.letter {
+  margin: -9px;
+}
+.letter-space{
+  padding: 0 10px;
+  margin-right: 11px;
+  margin-left: -9px;
+}
+.letter-space.border{
+  border-bottom: solid black;
+}
+.letter.correct{
+  color: #1ECE21;
+}
+.letter.incorrect{
+  color: #F93B3A;
+}
+.letter.border{
+  border-bottom: solid black;
+}
+.letter.border-incorrect{
+  border-bottom: solid #F93B3A;
+}
+.congrats.hidden {
+  display: none
+}
+.congrats {
+  position: absolute;
+  top: 18rem;
+  color: #1ECE21;
+}
