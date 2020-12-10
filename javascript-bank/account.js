@@ -7,7 +7,8 @@ function Account (number,holder){
 
 Account.prototype.deposit=function(amount){
   if (Math.sign(amount)===1){
-    this.transactions.push(amount)
+    var transaction = new Transaction("deposit",amount)
+    this.transactions.push(transaction)
     return true
   } else {
     return false
@@ -15,7 +16,8 @@ Account.prototype.deposit=function(amount){
 }
 Account.prototype.withdraw=function(amount){
   if (Math.sign(amount)===1){
-    this.transactions.push(-amount)
+    var transaction = new Transaction("withdrawal",-amount)
+    this.transactions.push(transaction)
     return true
   }else{
     return false
@@ -27,7 +29,7 @@ Account.prototype.getBalance=function(){
   } else if (this.transactions.length!==0){
     var sum =0;
     for (var i=0;i<this.transactions.length;i++){
-      sum += this.transactions[i]
+      sum += this.transactions[i].amount
     }
     return sum
   }
