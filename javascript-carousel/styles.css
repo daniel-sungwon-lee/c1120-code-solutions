@@ -1,0 +1,39 @@
+.hidden{
+  display: none;
+}
+.container{
+  margin: 9rem 0;
+}
+.row{
+  text-align: center;
+  width: 700px;
+  margin: auto;
+  padding: 4rem;
+  border: solid;
+  border-radius: 20px;
+  position: relative;
+}
+.dots{
+  position: relative;
+  top: 1rem;
+}
+.far.fa-circle,.fas.fa-circle{
+  margin: 0 3px;
+  cursor: pointer;
+}
+.left-arrow{
+  position: absolute;
+  top: 50%;
+  left: 6%;
+  font-size: 80px;
+  transform: translate(-50%,-50%);
+  cursor: pointer;
+}
+.right-arrow{
+  position: absolute;
+  top: 50%;
+  right: 2.5%;
+  font-size: 80px;
+  transform: translate(-50%,-50%);
+  cursor: pointer;
+}
