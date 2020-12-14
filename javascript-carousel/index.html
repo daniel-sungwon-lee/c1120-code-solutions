@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Carousel</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <section class="container">
+    <div class="row" id="charmander">
+      <div>
+        <img class="image" src="./images/004.png">
+      </div>
+      <div class="dots">
+        <i class="fas fa-circle" data-view="charmander"></i>
+        <i class="far fa-circle" data-view="squirtle"></i>
+        <i class="far fa-circle" data-view="bulbasaur"></i>
+        <i class="far fa-circle" data-view="pikachu"></i>
+        <i class="far fa-circle" data-view="jigglypuff"></i>
+      </div>
+      <div class="left-arrow">
+        <i class="fas fa-caret-left"></i>
+      </div>
+      <div class="right-arrow">
+        <i class="fas fa-caret-right"></i>
+      </div>
+    </div>
+    <div class="row hidden" id="squirtle">
+      <div>
+        <img class="image" src="./images/007.png">
+      </div>
+      <div class="dots">
+        <i class="far fa-circle" data-view="charmander"></i>
+        <i class="fas fa-circle" data-view="squirtle"></i>
+        <i class="far fa-circle" data-view="bulbasaur"></i>
+        <i class="far fa-circle" data-view="pikachu"></i>
+        <i class="far fa-circle" data-view="jigglypuff"></i>
+      </div>
+      <div class="left-arrow">
+        <i class="fas fa-caret-left"></i>
+      </div>
+      <div class="right-arrow">
+        <i class="fas fa-caret-right"></i>
+      </div>
+    </div>
+    <div class="row hidden" id="bulbasaur">
+      <div>
+        <img class="image" src="./images/001.png">
+      </div>
+      <div class="dots">
+        <i class="far fa-circle" data-view="charmander"></i>
+        <i class="far fa-circle" data-view="squirtle"></i>
+        <i class="fas fa-circle" data-view="bulbasaur"></i>
+        <i class="far fa-circle" data-view="pikachu"></i>
+        <i class="far fa-circle" data-view="jigglypuff"></i>
+      </div>
+      <div class="left-arrow">
+        <i class="fas fa-caret-left"></i>
+      </div>
+      <div class="right-arrow">
+        <i class="fas fa-caret-right"></i>
+      </div>
+    </div>
+    <div class="row hidden" id="pikachu">
+      <div>
+        <img class="image" src="./images/025.png">
+      </div>
+      <div class="dots">
+        <i class="far fa-circle" data-view="charmander"></i>
+        <i class="far fa-circle" data-view="squirtle"></i>
+        <i class="far fa-circle" data-view="bulbasaur"></i>
+        <i class="fas fa-circle" data-view="pikachu"></i>
+        <i class="far fa-circle" data-view="jigglypuff"></i>
+      </div>
+      <div class="left-arrow">
+        <i class="fas fa-caret-left"></i>
+      </div>
+      <div class="right-arrow">
+        <i class="fas fa-caret-right"></i>
+      </div>
+    </div>
+    <div class="row hidden" id="jigglypuff">
+      <div>
+        <img class="image" src="./images/039.png">
+      </div>
+      <div class="dots">
+        <i class="far fa-circle" data-view="charmander"></i>
+        <i class="far fa-circle" data-view="squirtle"></i>
+        <i class="far fa-circle" data-view="bulbasaur"></i>
+        <i class="far fa-circle" data-view="pikachu"></i>
+        <i class="fas fa-circle" data-view="jigglypuff"></i>
+      </div>
+      <div class="left-arrow">
+        <i class="fas fa-caret-left"></i>
+      </div>
+      <div class="right-arrow">
+        <i class="fas fa-caret-right"></i>
+      </div>
+    </div>
+  </section>
+  <script src="main.js"></script>
+</body>
+</html>
