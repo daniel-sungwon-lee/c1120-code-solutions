@@ -1,7 +1,72 @@
+var $section = document.querySelector(".container")
 var $rows = document.querySelectorAll(".row")
 var $dots= document.querySelectorAll(".fa-circle")
 var $leftArrows=document.querySelectorAll(".fa-caret-left")
 var $rightArrows=document.querySelectorAll(".fa-caret-right")
+
+var imgArr = ["./images/004.png", "./images/007.png", "./images/001.png", "./images/025.png", "./images/039.png"]
+
+function renderRow(imgArr){
+  $divRow = document.createElement("div")
+  $divRow.setAttribute("class","row")
+
+  $divImg = document.createElement("div")
+  $divRow.appendChild($divImg)
+
+  $img=document.createElement("img")
+  $img.setAttribute("class","image")
+  $img.setAttribute("src",imgArr)
+  $divImg.appendChild($img)
+
+  $divDots=document.createElement("div")
+  $divDots.setAttribute("class","dots")
+  $divRow.appendChild($divDots)
+
+  $dot=document.createElement("i")
+  $dot.setAttribute("class","far fa-circle")
+  $divDots.appendChild($dot)
+
+  $dot = document.createElement("i")
+  $dot.setAttribute("class", "far fa-circle")
+  $divDots.appendChild($dot)
+
+  $dot = document.createElement("i")
+  $dot.setAttribute("class", "far fa-circle")
+  $divDots.appendChild($dot)
+
+  $dot = document.createElement("i")
+  $dot.setAttribute("class", "far fa-circle")
+  $divDots.appendChild($dot)
+
+  $dot = document.createElement("i")
+  $dot.setAttribute("class", "far fa-circle")
+  $divDots.appendChild($dot)
+
+  $divLeftArrow=document.createElement("div")
+  $divLeftArrow.setAttribute("class","left-arrow")
+  $divRow.appendChild($divLeftArrow)
+
+  $arrowLeft=document.createElement("i")
+  $arrowLeft.setAttribute("class","fas fa-caret-left")
+  $divLeftArrow.appendChild($arrowLeft)
+
+  $divRightArrow=document.createElement("div")
+  $divRightArrow.setAttribute("class","right-arrow")
+  $divRow.appendChild($divRightArrow)
+
+  $arrowRight=document.createElement("i")
+  $arrowRight.setAttribute("class","fas fa-caret-right")
+  $divRightArrow.appendChild($arrowRight)
+
+  return $divRow
+}
+
+function newCarousel(){
+  while (){
+
+  }
+}
+
 
 function carousel(){
   for (var i =0;i<$rows.length;i++){
