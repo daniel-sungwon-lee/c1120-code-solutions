@@ -62,9 +62,8 @@ function renderRow(imgArr){
 }
 
 function newCarousel(){
-  while (){
-
-  }
+  var i =0
+  renderRow(imgArr[i])
 }
 
 
