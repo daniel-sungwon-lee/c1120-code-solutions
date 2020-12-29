@@ -1,130 +1,173 @@
 var $section = document.querySelector(".container")
-var $rows = document.querySelectorAll(".row")
-var $dots= document.querySelectorAll(".fa-circle")
-var $leftArrows=document.querySelectorAll(".fa-caret-left")
-var $rightArrows=document.querySelectorAll(".fa-caret-right")
 
 var imgArr = ["./images/004.png", "./images/007.png", "./images/001.png", "./images/025.png", "./images/039.png"]
 
 function renderRow(imgArr){
-  $divRow = document.createElement("div")
+  var $divRow = document.createElement("div")
   $divRow.setAttribute("class","row")
 
-  $divImg = document.createElement("div")
+  var $divImg = document.createElement("div")
   $divRow.appendChild($divImg)
 
-  $img=document.createElement("img")
+  var $img=document.createElement("img")
   $img.setAttribute("class","image")
   $img.setAttribute("src",imgArr)
   $divImg.appendChild($img)
 
-  $divDots=document.createElement("div")
+  var $divDots=document.createElement("div")
   $divDots.setAttribute("class","dots")
   $divRow.appendChild($divDots)
 
-  $dot=document.createElement("i")
-  $dot.setAttribute("class","far fa-circle")
-  $divDots.appendChild($dot)
+  var $dot1=document.createElement("i")
+  $dot1.setAttribute("class","far fa-circle")
+  $dot1.setAttribute("id","dot-1")
+  $divDots.appendChild($dot1)
 
-  $dot = document.createElement("i")
-  $dot.setAttribute("class", "far fa-circle")
-  $divDots.appendChild($dot)
+  var $dot2 = document.createElement("i")
+  $dot2.setAttribute("class", "far fa-circle")
+  $dot2.setAttribute("id","dot-2")
+  $divDots.appendChild($dot2)
 
-  $dot = document.createElement("i")
-  $dot.setAttribute("class", "far fa-circle")
-  $divDots.appendChild($dot)
+  var $dot3 = document.createElement("i")
+  $dot3.setAttribute("class", "far fa-circle")
+  $dot3.setAttribute("id","dot-3")
+  $divDots.appendChild($dot3)
 
-  $dot = document.createElement("i")
-  $dot.setAttribute("class", "far fa-circle")
-  $divDots.appendChild($dot)
+  var $dot4 = document.createElement("i")
+  $dot4.setAttribute("class", "far fa-circle")
+  $dot4.setAttribute("id","dot-4")
+  $divDots.appendChild($dot4)
 
-  $dot = document.createElement("i")
-  $dot.setAttribute("class", "far fa-circle")
-  $divDots.appendChild($dot)
+  var $dot5 = document.createElement("i")
+  $dot5.setAttribute("class", "far fa-circle")
+  $dot5.setAttribute("id","dot-5")
+  $divDots.appendChild($dot5)
 
-  $divLeftArrow=document.createElement("div")
+  var $divLeftArrow=document.createElement("div")
   $divLeftArrow.setAttribute("class","left-arrow")
   $divRow.appendChild($divLeftArrow)
 
-  $arrowLeft=document.createElement("i")
+  var $arrowLeft=document.createElement("i")
   $arrowLeft.setAttribute("class","fas fa-caret-left")
+  $arrowLeft.setAttribute("id","arrow-left")
   $divLeftArrow.appendChild($arrowLeft)
 
-  $divRightArrow=document.createElement("div")
+  var $divRightArrow=document.createElement("div")
   $divRightArrow.setAttribute("class","right-arrow")
   $divRow.appendChild($divRightArrow)
 
-  $arrowRight=document.createElement("i")
+  var $arrowRight=document.createElement("i")
   $arrowRight.setAttribute("class","fas fa-caret-right")
+  $arrowRight.setAttribute("id","arrow-right")
   $divRightArrow.appendChild($arrowRight)
 
   return $divRow
 }
 
-function newCarousel(){
-  var i =0
-  renderRow(imgArr[i])
-}
-
-
-function carousel(){
-  for (var i =0;i<$rows.length;i++){
-    if (!($rows[i].matches(".hidden"))){
-      var number=i
+function carousel() {
+  for (var i = 0; i < imgArr.length; i++) {
+    if (document.querySelector("img").getAttribute("src") === imgArr[i]) {
+      var num = i+1
     }
   }
-  if (number >= 0 && number < $rows.length - 1) {
-    $rows[number].className = "hidden"
-    $rows[number + 1].className = "row"
-    number++
-  } else if (number = $rows.length - 1) {
-    $rows[number].className = "hidden"
-    $rows[0].className = "row"
-    number = 0
+
+  $section.firstElementChild.remove()
+
+  if (num<imgArr.length){
+    $section.appendChild(renderRow(imgArr[num]))
+
+    var $dots = document.querySelectorAll(".fa-circle")
+    $dots[num].className="fas fa-circle"
+    num++
+  } else {
+    num=0
+    $section.appendChild(renderRow(imgArr[num]))
+
+    var $dots = document.querySelectorAll(".fa-circle")
+    $dots[num].className="fas fa-circle"
+    num++
   }
 }
 
-var carouselStart =setInterval(carousel,3000)
+var carouselStart=setInterval(carousel,3000)
+
+document.addEventListener("DOMContentLoaded",function(event){
+  $section.appendChild(renderRow(imgArr[0]))
+
+  var $dot = document.querySelector(".fa-circle")
+  $dot.className="fas fa-circle"
+})
 
 document.addEventListener("click",function(event){
-  for (var i =0;i<$leftArrows.length;i++){
-    if (event.target === $leftArrows[i]) {
-      if (event.target.closest(".row") === $rows[0]) {
-        $rows[0].className = "hidden"
-        $rows[$rows.length - 1].className = "row"
-      } else if (event.target.closest(".row") !== $rows[0]) {
-        var clickedRow = event.target.closest(".row")
-        for (var i = 0; i < $rows.length; i++) {
-          if (clickedRow === $rows[i]) {
-            clickedRow.className = "hidden"
-            $rows[i - 1].className = "row"
-          }
+  if (event.target.matches("#arrow-left")){
+    for (var i = 0; i < imgArr.length; i++) {
+      if (document.querySelector("img").getAttribute("src") === imgArr[i]) {
+        if (i>0){
+          var num = i - 1
+        }else if (i===0){
+          var num =imgArr.length-1
         }
       }
     }
-  }
-  for (var i =0;i<$rightArrows.length;i++){
-    if (event.target === $rightArrows[i]) {
-      if (event.target.closest(".row") === $rows[$rows.length - 1]) {
-        $rows[$rows.length - 1].className = "hidden"
-        $rows[0].className = "row"
-      } else if (event.target.closest(".row")!==$rows[$rows.length-1]){
-        var clickedRow=event.target.closest(".row")
-        for (var i =0;i<$rows.length;i++){
-          if (clickedRow===$rows[i]){
-            clickedRow.className="hidden"
-            $rows[i+1].className="row"
-          }
+
+    $section.firstElementChild.remove()
+
+    $section.appendChild(renderRow(imgArr[num]))
+
+    var $dots = document.querySelectorAll(".fa-circle")
+    $dots[num].className = "fas fa-circle"
+
+  }else if (event.target.matches("#arrow-right")){
+    for (var i = 0; i < imgArr.length; i++) {
+      if (document.querySelector("img").getAttribute("src") === imgArr[i]) {
+        if (i < imgArr.length-1) {
+          var num = i + 1
+        } else if (i >=imgArr.length-1) {
+          var num = 0
         }
       }
     }
-  }
-  for (var i =0;i<$dots.length;i++){
-    if (event.target===$dots[i]){
-      event.target.closest(".row").className="hidden"
-      var dataView =event.target.getAttribute("data-view")
-      var $row=document.getElementById(dataView)
-      $row.className="row"
-    }
+
+    $section.firstElementChild.remove()
+
+    $section.appendChild(renderRow(imgArr[num]))
+
+    var $dots = document.querySelectorAll(".fa-circle")
+    $dots[num].className = "fas fa-circle"
+
+  }else if (event.target.matches("#dot-1")){
+    $section.firstElementChild.remove()
+    $section.appendChild(renderRow(imgArr[0]))
+
+    var $dots = document.querySelectorAll(".fa-circle")
+    $dots[0].className = "fas fa-circle"
+
+  }else if (event.target.matches("#dot-2")){
+    $section.firstElementChild.remove()
+    $section.appendChild(renderRow(imgArr[1]))
+
+    var $dots = document.querySelectorAll(".fa-circle")
+    $dots[1].className = "fas fa-circle"
+
+  }else if (event.target.matches("#dot-3")){
+    $section.firstElementChild.remove()
+    $section.appendChild(renderRow(imgArr[2]))
+
+    var $dots = document.querySelectorAll(".fa-circle")
+    $dots[2].className = "fas fa-circle"
+
+  }else if (event.target.matches("#dot-4")){
+    $section.firstElementChild.remove()
+    $section.appendChild(renderRow(imgArr[3]))
+
+    var $dots = document.querySelectorAll(".fa-circle")
+    $dots[3].className = "fas fa-circle"
+
+  }else if (event.target.matches("#dot-5")){
+    $section.firstElementChild.remove()
+    $section.appendChild(renderRow(imgArr[4]))
+
+    var $dots = document.querySelectorAll(".fa-circle")
+    $dots[4].className = "fas fa-circle"
   }
 })
