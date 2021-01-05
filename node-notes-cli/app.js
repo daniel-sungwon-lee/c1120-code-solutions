@@ -30,5 +30,12 @@ switch(keyword){
     })
     break
   case "delete":
+    delete notes[process.argv[3]]
+    fs.writeFile("data.json", JSON.stringify(data, null, 2), (err) => {
+      if (err) {
+        console.error(err)
+        process.exit(1)
+      }
+    })
     break
 }
