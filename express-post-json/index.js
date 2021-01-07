@@ -17,8 +17,9 @@ app.get("/api/grades",(req,res)=>{
 app.use(express.json())
 
 app.post("/api/grades",(req,res)=>{
-  newGrades=req.body
+  let newGrades=req.body
   newGrades.id=nextId
+  grades[nextId]=newGrades
   ++nextId
   res.status(201).send(newGrades)
 })
