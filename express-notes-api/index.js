@@ -65,7 +65,7 @@ app.post("/api/notes",(req,res)=>{
 
     res.status(400).json(err)
 
-  } else if (Object.keys(newNote).length>0){
+  } else {
     newNote.id=parseInt(nextId)
 
     notes[nextId]=newNote
@@ -126,12 +126,59 @@ app.delete("/api/notes/:id",(req,res)=>{
 })
 
 
+app.put("/api/notes/:id",(req,res)=>{
+  let id = parseFloat(req.params.id)
+  let updatedNote = req.body
 
+  if (Object.keys(updatedNote).length === 0) {
+    const errContent = {
+      "error": "content is a required field"
+    }
 
+    res.status(400).json(errContent)
 
+  } else {
+    const idArr = []
+    for (const prop in notes) {
+      idArr.push(parseInt(prop))
+    }
 
+    if (Number.isInteger(id)) {
+      if (Math.sign(id) === 1) {
+        if (idArr.includes(id)) {
+          updatedNote.id=id
+          notes[id]=updatedNote
 
+          fs.writeFile("data.json", JSON.stringify(data, null, 2), (err) => {
+            if (err) {
+              console.error(err)
+            }
+          })
 
+          res.status(200).json(updatedNote)
+
+        } else {
+          const err2 = {
+            "error": `cannot find note with id ${id}`
+          }
+          res.status(404).json(err2)
+        }
+
+      } else {
+        const err = {
+          "error": "id must be a positive integer"
+        }
+        res.status(400).json(err)
+      }
+
+    } else {
+      const err = {
+        "error": "id must be a positive integer"
+      }
+      res.status(400).json(err)
+    }
+  }
+})
 
 
 
