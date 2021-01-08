@@ -18,27 +18,37 @@ app.get("/api/notes",(req,res)=>{
 })
 
 app.get("/api/notes/:id",(req,res)=>{
-  let id = parseInt(req.params.id)
+  let id = parseFloat(req.params.id)
 
   const idArr=[]
   for (const prop in notes) {
     idArr.push(parseInt(prop))
   }
 
-  if (Math.sign(id)===-1){
+  if (Number.isInteger(id)){
+    if(Math.sign(id)===1){
+      if(idArr.includes(id)){
+        res.status(200).json(notes[id])
+
+      } else {
+        const err2 = {
+          "error": `cannot find note with id ${id}`
+        }
+        res.status(404).json(err2)
+      }
+
+    } else {
+      const err = {
+        "error": "id must be a positive integer"
+      }
+      res.status(400).json(err)
+    }
+
+  } else {
     const err = {
-      "error":"id must be a positive integer"
+      "error": "id must be a positive integer"
     }
     res.status(400).json(err)
-
-  } else if(idArr.includes(id)===false){
-    const err = {
-      "error": `cannot find note with id ${id}`
-    }
-    res.status(404).json(err)
-
-  } else if (idArr.includes(id)===true){
-    res.status(200).json(notes[id])
   }
 })
 
@@ -72,6 +82,48 @@ app.post("/api/notes",(req,res)=>{
 })
 
 
+app.delete("/api/notes/:id",(req,res)=>{
+  let id = parseFloat(req.params.id)
+
+  const idArr = []
+  for (const prop in notes) {
+    idArr.push(parseInt(prop))
+  }
+
+  if (Number.isInteger(id)) {
+    if (Math.sign(id) === 1) {
+      if (idArr.includes(id)) {
+        delete notes[id]
+
+        fs.writeFile("data.json", JSON.stringify(data, null, 2), (err) => {
+          if (err) {
+            console.error(err)
+          }
+        })
+
+        res.sendStatus(204)
+
+      } else {
+        const err2 = {
+          "error": `cannot find note with id ${id}`
+        }
+        res.status(404).json(err2)
+      }
+
+    } else {
+      const err = {
+        "error": "id must be a positive integer"
+      }
+      res.status(400).json(err)
+    }
+
+  } else {
+    const err = {
+      "error": "id must be a positive integer"
+    }
+    res.status(400).json(err)
+  }
+})
 
 
 
