@@ -18,23 +18,31 @@ app.get("/api/notes",(req,res)=>{
 })
 
 app.get("/api/notes/:id",(req,res)=>{
-  let id = parseFloat(req.params.id)
+  if (isNaN(req.params.id) === false){
+    let id = parseFloat(req.params.id)
 
-  const idArr=[]
-  for (const prop in notes) {
-    idArr.push(parseInt(prop))
-  }
+    const idArr=[]
+    for (const prop in notes) {
+      idArr.push(parseInt(prop))
+    }
 
-  if (Number.isInteger(id)){
-    if(Math.sign(id)===1){
-      if(idArr.includes(id)){
-        res.status(200).json(notes[id])
+    if (Number.isInteger(id)){
+      if(Math.sign(id)===1){
+        if(idArr.includes(id)){
+          res.status(200).json(notes[id])
+
+        } else {
+          const err2 = {
+            "error": `cannot find note with id ${id}`
+          }
+          res.status(404).json(err2)
+        }
 
       } else {
-        const err2 = {
-          "error": `cannot find note with id ${id}`
+        const err = {
+          "error": "id must be a positive integer"
         }
-        res.status(404).json(err2)
+        res.status(400).json(err)
       }
 
     } else {
@@ -43,7 +51,6 @@ app.get("/api/notes/:id",(req,res)=>{
       }
       res.status(400).json(err)
     }
-
   } else {
     const err = {
       "error": "id must be a positive integer"
@@ -83,61 +90,9 @@ app.post("/api/notes",(req,res)=>{
 
 
 app.delete("/api/notes/:id",(req,res)=>{
-  let id = parseFloat(req.params.id)
+  if (isNaN(req.params.id)===false){
+    let id = parseFloat(req.params.id)
 
-  const idArr = []
-  for (const prop in notes) {
-    idArr.push(parseInt(prop))
-  }
-
-  if (Number.isInteger(id)) {
-    if (Math.sign(id) === 1) {
-      if (idArr.includes(id)) {
-        delete notes[id]
-
-        fs.writeFile("data.json", JSON.stringify(data, null, 2), (err) => {
-          if (err) {
-            console.error(err)
-          }
-        })
-
-        res.sendStatus(204)
-
-      } else {
-        const err2 = {
-          "error": `cannot find note with id ${id}`
-        }
-        res.status(404).json(err2)
-      }
-
-    } else {
-      const err = {
-        "error": "id must be a positive integer"
-      }
-      res.status(400).json(err)
-    }
-
-  } else {
-    const err = {
-      "error": "id must be a positive integer"
-    }
-    res.status(400).json(err)
-  }
-})
-
-
-app.put("/api/notes/:id",(req,res)=>{
-  let id = parseFloat(req.params.id)
-  let updatedNote = req.body
-
-  if (Object.keys(updatedNote).length === 0) {
-    const errContent = {
-      "error": "content is a required field"
-    }
-
-    res.status(400).json(errContent)
-
-  } else {
     const idArr = []
     for (const prop in notes) {
       idArr.push(parseInt(prop))
@@ -146,8 +101,7 @@ app.put("/api/notes/:id",(req,res)=>{
     if (Number.isInteger(id)) {
       if (Math.sign(id) === 1) {
         if (idArr.includes(id)) {
-          updatedNote.id=id
-          notes[id]=updatedNote
+          delete notes[id]
 
           fs.writeFile("data.json", JSON.stringify(data, null, 2), (err) => {
             if (err) {
@@ -155,7 +109,7 @@ app.put("/api/notes/:id",(req,res)=>{
             }
           })
 
-          res.status(200).json(updatedNote)
+          res.sendStatus(204)
 
         } else {
           const err2 = {
@@ -171,6 +125,74 @@ app.put("/api/notes/:id",(req,res)=>{
         res.status(400).json(err)
       }
 
+    } else {
+      const err = {
+        "error": "id must be a positive integer"
+      }
+      res.status(400).json(err)
+    }
+  } else {
+    const err = {
+      "error": "id must be a positive integer"
+    }
+    res.status(400).json(err)
+  }
+})
+
+
+app.put("/api/notes/:id",(req,res)=>{
+  let updatedNote = req.body
+
+  if (Object.keys(updatedNote).length === 0) {
+    const errContent = {
+      "error": "content is a required field"
+    }
+
+    res.status(400).json(errContent)
+
+  } else {
+    if (isNaN(req.params.id) === false){
+      let id = parseFloat(req.params.id)
+
+      const idArr = []
+      for (const prop in notes) {
+        idArr.push(parseInt(prop))
+      }
+
+      if (Number.isInteger(id)) {
+        if (Math.sign(id) === 1) {
+          if (idArr.includes(id)) {
+            updatedNote.id = id
+            notes[id] = updatedNote
+
+            fs.writeFile("data.json", JSON.stringify(data, null, 2), (err) => {
+              if (err) {
+                console.error(err)
+              }
+            })
+
+            res.status(200).json(updatedNote)
+
+          } else {
+            const err2 = {
+              "error": `cannot find note with id ${id}`
+            }
+            res.status(404).json(err2)
+          }
+
+        } else {
+          const err = {
+            "error": "id must be a positive integer"
+          }
+          res.status(400).json(err)
+        }
+
+      } else {
+        const err = {
+          "error": "id must be a positive integer"
+        }
+        res.status(400).json(err)
+      }
     } else {
       const err = {
         "error": "id must be a positive integer"
