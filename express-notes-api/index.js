@@ -47,9 +47,10 @@ app.get("/api/notes/:id",(req,res)=>{
 
 
 app.post("/api/notes",(req,res)=>{
-  let newNote=req.body
+  if(req.body.hasOwnProperty("content")) {
+    let newNote = new Object()
+    newNote.content = req.body.content
 
-  if(newNote.hasOwnProperty("content")) {
     newNote.id=parseInt(nextId)
 
     notes[nextId]=newNote
@@ -112,9 +113,7 @@ app.delete("/api/notes/:id",(req,res)=>{
 
 
 app.put("/api/notes/:id",(req,res)=>{
-  let updatedNote = req.body
-
-  if (updatedNote.hasOwnProperty("content")) {
+  if (req.body.hasOwnProperty("content")) {
     if (isNaN(req.params.id) === false && req.params.id > 0 && Number.isInteger(parseFloat(req.params.id))) {
       let id = parseFloat(req.params.id)
 
@@ -124,6 +123,9 @@ app.put("/api/notes/:id",(req,res)=>{
       }
 
       if (idArr.includes(id)) {
+        let updatedNote=new Object()
+        updatedNote.content=req.body.content
+
         updatedNote.id = id
         notes[id] = updatedNote
 
