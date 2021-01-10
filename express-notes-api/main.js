@@ -5,7 +5,7 @@ function getNotes(){
   xhr.open("GET","http://localhost:3000/api/notes/")
   xhr.setRequestHeader("Accept","*/*")
   xhr.addEventListener("load",()=>{
-    const data= JSON.parse(xhr.response)
+    const data= xhr.response
 
     for (let i=0;i<data.length;i++){
       const $li = document.createElement("li")
