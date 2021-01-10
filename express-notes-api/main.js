@@ -6,18 +6,11 @@ function getNotes(){
   xhr.setRequestHeader("Accept","*/*")
   xhr.addEventListener("load",()=>{
     const data= JSON.parse(xhr.response)
-    let {notes}=data
 
-    const notesArray=Object.values(notes)
-    let contentArr=[]
-    for (let i =0;i<notesArray.length;i++){
-      contentArr.push(notesArray[i].content)
-    }
-
-    for (let i=0;i<contentArr.length;i++){
+    for (let i=0;i<data.length;i++){
       const $li = document.createElement("li")
       $li.className="list-group-item"
-      $li.textContent=contentArr[i]
+      $li.textContent=data[i].content
 
       $ul.appendChild($li)
     }
