@@ -1,6 +1,17 @@
 .row{
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%);
+  margin: auto;
   margin-top: 3rem;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width:600px){
+  .navbar{
+    display: flex;
+    flex-direction: column;
+  }
+  .search{
+    justify-content: center;
+  }
 }
