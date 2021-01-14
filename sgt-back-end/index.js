@@ -21,34 +21,40 @@ app.get("/api/grades",(req,res)=>{
     })
 
     .catch(err=>{
-      res.status(500).json({error: "An unexpected error occurred."})
+      res.status(500).json({error: "An unexpected error occurred"})
     })
 })
 
 
 app.post("/api/grades", (req, res) => {
-  if ("name" in req.body && "course" in req.body && "score" in req.body &&
-  !isNaN(req.body.score) && Number.isInteger(parseFloat(req.body.score)) &&
-  req.body.score>0 && req.body.score<=100 && Object.keys(req.body).length===3){
+  if (!("name" in req.body) || !("course" in req.body) || !("score" in req.body) || Object.keys(req.body).length !== 3){
+
+    res.status(400).json({error: "Name, course, and score are required"})
+    return
+  }
+
+  if (!isNaN(req.body.score) && Number.isInteger(parseFloat(req.body.score)) && req.body.score>0 && req.body.score<=100){
 
     const sql=`
       insert into "grades" ("name","course","score")
-      values ('${req.body.name}', '${req.body.course}', ${parseInt(req.body.score)})
+      values ($1, $2, $3)
       returning *
     `
 
-    db.query(sql)
+    const values = [req.body.name, req.body.course, parseInt(req.body.score)]
+
+    db.query(sql,values)
       .then(result=>{
         const newRow = result.rows[0]
         res.status(201).json(newRow)
       })
 
       .catch(err=>{
-        res.status(500).json({error: "An unexpected error occurred."})
+        res.status(500).json({error: "An unexpected error occurred"})
       })
 
   } else {
-    res.status(400).json({error: "Please check inputs"})
+    res.status(400).json({error: "Score must be a number between 1 to 100"})
   }
 })
 
@@ -61,24 +67,28 @@ app.put("/api/grades/:gradeId",(req,res)=>{
     return
   }
 
-  if ("name" in req.body && "course" in req.body && "score" in req.body &&
-  !isNaN(req.body.score) && Number.isInteger(parseFloat(req.body.score)) &&
-  req.body.score > 0 && req.body.score<=100 && Object.keys(req.body).length === 3){
+  if (!("name" in req.body) || !("course" in req.body) || !("score" in req.body) || Object.keys(req.body).length !== 3) {
+
+    res.status(400).json({ error: "Name, course, and score are required" })
+    return
+  }
+
+  if (!isNaN(req.body.score) && Number.isInteger(parseFloat(req.body.score)) && req.body.score > 0 && req.body.score<=100){
 
     const gradeId = parseInt(req.params.gradeId)
 
     const sql = `
       update "grades"
-      set "name"='${req.body.name}',
-          "course"='${req.body.course}',
-          "score"='${req.body.score}'
-      where "gradeId"= $1
+      set "name"= $1,
+          "course"= $2,
+          "score"= $3
+      where "gradeId"= $4
       returning *
     `
 
-    const value = [gradeId]
+    const values = [req.body.name, req.body.course, parseInt(req.body.score), gradeId]
 
-    db.query(sql,value)
+    db.query(sql,values)
       .then(result=>{
         const updatedRow = result.rows[0]
 
@@ -91,11 +101,11 @@ app.put("/api/grades/:gradeId",(req,res)=>{
       })
 
       .catch(err=>{
-        res.status(500).json({error: "An unexpected error occurred."})
+        res.status(500).json({error: "An unexpected error occurred"})
       })
 
   } else{
-    res.status(400).json({error: "Please check inputs"})
+    res.status(400).json({error: "Score must be a number between 1 to 100"})
   }
 })
 
@@ -131,7 +141,7 @@ app.delete("/api/grades/:gradeId",(req,res)=>{
     })
 
     .catch(err=>{
-      res.status(500).json({error: "An unexpected error occurred."})
+      res.status(500).json({error: "An unexpected error occurred"})
     })
 })
 
