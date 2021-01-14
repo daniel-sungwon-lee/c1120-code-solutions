@@ -39,8 +39,8 @@ app.post("/api/grades", (req, res) => {
 
     db.query(sql)
       .then(result=>{
-        const grade = result.rows[0]
-        res.status(201).json(grade)
+        const newRow = result.rows[0]
+        res.status(201).json(newRow)
       })
 
       .catch(err=>{
@@ -74,13 +74,13 @@ app.put("/api/grades/:gradeId",(req,res)=>{
 
     db.query(sql,value)
       .then(result=>{
-        const grade = result.rows[0]
+        const updatedRow = result.rows[0]
 
-        if(!grade){
+        if(!updatedRow){
           res.status(404).json({error: `Cannot find grade with gradeId ${gradeId}`})
 
         } else{
-          res.status(200).json(grade)
+          res.status(200).json(updatedRow)
         }
       })
 
@@ -94,7 +94,40 @@ app.put("/api/grades/:gradeId",(req,res)=>{
 })
 
 
+app.delete("/api/grades/:gradeId",(req,res)=>{
+  if (isNaN(req.params.gradeId) === false && req.params.gradeId > 0 &&
+  Number.isInteger(parseFloat(req.params.gradeId))){
 
+    const gradeId=parseInt(req.params.gradeId)
+
+    const sql = `
+    delete from "grades"
+    where "gradeId"=$1
+    returning *
+    `
+
+    const value = [gradeId]
+
+    db.query(sql,value)
+      .then(result=>{
+        const deletedRow=result.rows[0]
+
+        if(!deletedRow){
+          res.status(404).json({error: `Cannot find grade with gradeId ${gradeId}`})
+
+        } else{
+          res.status(204).json(deletedRow)
+        }
+      })
+
+      .catch(err=>{
+        res.status(500).json({error: "An unexpected error occurred."})
+      })
+
+  } else{
+    res.status(400).json({error: "Invalid gradeId"})
+  }
+})
 
 
 
