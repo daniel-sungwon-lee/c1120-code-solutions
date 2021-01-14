@@ -26,6 +26,28 @@ app.get("/api/grades",(req,res)=>{
 })
 
 
+app.post("/api/grades", (req, res) => {
+  if ("name" in req.body && "course" in req.body && "score" in req.body && Number.isInteger(parseFloat(req.body.score)) && req.body.score>0 && Object.keys(req.body).length===3){
+    const sql=`
+      insert into "grades" ("name","course","score")
+      values ('${req.body.name}', '${req.body.course}', '${req.body.score}')
+      returning *
+    `
+
+    db.query(sql)
+      .then(result=>{
+        const grade = result.rows[0]
+        res.status(201).json(grade)
+      })
+
+      .catch(err=>{
+        res.status(500).json({error: "An unexpected error occurred."})
+      })
+
+  } else {
+    res.status(400).json({error: "Please check inputs"})
+  }
+})
 
 
 
