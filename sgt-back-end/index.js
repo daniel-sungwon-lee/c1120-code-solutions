@@ -28,8 +28,8 @@ app.get("/api/grades",(req,res)=>{
 
 app.post("/api/grades", (req, res) => {
   if ("name" in req.body && "course" in req.body && "score" in req.body &&
-  isNaN(req.body.score) === false && Number.isInteger(parseFloat(req.body.score)) &&
-  req.body.score>0 && Object.keys(req.body).length===3){
+  !isNaN(req.body.score) && Number.isInteger(parseFloat(req.body.score)) &&
+  req.body.score>0 && req.body.score<=100 && Object.keys(req.body).length===3){
 
     const sql=`
       insert into "grades" ("name","course","score")
@@ -54,10 +54,16 @@ app.post("/api/grades", (req, res) => {
 
 
 app.put("/api/grades/:gradeId",(req,res)=>{
+  if (isNaN(req.params.gradeId) || req.params.gradeId <= 0 ||
+  !Number.isInteger(parseFloat(req.params.gradeId))){
+
+    res.status(400).json({error: "gradeId must be a positive integer"})
+    return
+  }
+
   if ("name" in req.body && "course" in req.body && "score" in req.body &&
-  isNaN(req.body.score) === false && Number.isInteger(parseFloat(req.body.score)) &&
-  req.body.score > 0 && Object.keys(req.body).length === 3 && isNaN(req.params.gradeId) === false &&
-  req.params.gradeId > 0 && Number.isInteger(parseFloat(req.params.gradeId))){
+  !isNaN(req.body.score) && Number.isInteger(parseFloat(req.body.score)) &&
+  req.body.score > 0 && req.body.score<=100 && Object.keys(req.body).length === 3){
 
     const gradeId = parseInt(req.params.gradeId)
 
@@ -95,38 +101,38 @@ app.put("/api/grades/:gradeId",(req,res)=>{
 
 
 app.delete("/api/grades/:gradeId",(req,res)=>{
-  if (isNaN(req.params.gradeId) === false && req.params.gradeId > 0 &&
-  Number.isInteger(parseFloat(req.params.gradeId))){
+  if (isNaN(req.params.gradeId) || req.params.gradeId <= 0 ||
+    !Number.isInteger(parseFloat(req.params.gradeId))) {
 
-    const gradeId=parseInt(req.params.gradeId)
-
-    const sql = `
-    delete from "grades"
-    where "gradeId"=$1
-    returning *
-    `
-
-    const value = [gradeId]
-
-    db.query(sql,value)
-      .then(result=>{
-        const deletedRow=result.rows[0]
-
-        if(!deletedRow){
-          res.status(404).json({error: `Cannot find grade with gradeId ${gradeId}`})
-
-        } else{
-          res.status(204).json(deletedRow)
-        }
-      })
-
-      .catch(err=>{
-        res.status(500).json({error: "An unexpected error occurred."})
-      })
-
-  } else{
-    res.status(400).json({error: "Invalid gradeId"})
+    res.status(400).json({ error: "gradeId must be a positive integer" })
+    return
   }
+
+  const gradeId=parseInt(req.params.gradeId)
+
+  const sql = `
+  delete from "grades"
+  where "gradeId"=$1
+  returning *
+  `
+
+  const value = [gradeId]
+
+  db.query(sql,value)
+    .then(result=>{
+      const deletedRow=result.rows[0]
+
+      if(!deletedRow){
+        res.status(404).json({error: `Cannot find grade with gradeId ${gradeId}`})
+
+      } else{
+        res.status(204).json(deletedRow)
+      }
+    })
+
+    .catch(err=>{
+      res.status(500).json({error: "An unexpected error occurred."})
+    })
 })
 
 
