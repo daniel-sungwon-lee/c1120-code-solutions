@@ -1,4 +1,4 @@
-const { createElement } = require('../lib');
+import createElement from '../lib/create-element';
 
 class TodoForm {
   constructor(onSubmit) {
@@ -44,4 +44,4 @@ class TodoForm {
   }
 }
 
-module.exports = TodoForm;
+export = TodoForm;
