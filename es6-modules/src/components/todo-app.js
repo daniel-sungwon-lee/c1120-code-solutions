@@ -1,5 +1,4 @@
-import createElement from '../lib/create-element';
-import noop from '../lib/noop'
+import {createElement,noop} from '../lib'
 import TodoList from './todo-list';
 import TodoForm from './todo-form';
 
@@ -53,4 +52,4 @@ class TodoApp {
   }
 }
 
-export = TodoApp;
+export default = TodoApp;
