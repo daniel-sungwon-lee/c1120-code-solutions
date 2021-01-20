@@ -1,0 +1,37 @@
+div{
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+button{
+  padding: 13px 23px;
+  filter: drop-shadow(3px 3px black);
+  font-weight: 600;
+  outline: none;
+}
+
+.white{
+  background-color: #FFFFFF;
+}
+.yellow{
+  background-color: #FFFF00;
+}
+
+.orange{
+  background-color: #F6B26B;
+}
+
+.red{
+  background-color: #E06666;
+  color: white;
+}
+
+.purple{
+  background-color: #674EA7;
+  color: white;
+}
+
+.dark{
+  background-color: #351C75;
+  color: white;
+}
