@@ -16,17 +16,19 @@ class ToggleSwitch extends React.Component{
     const toggle=this.state.switch
     if(toggle % 2===0){
       return (
-        <div>
+        <label>
+          <input type="checkbox" />
           <i onClick={this.handleSwitch} class="fas fa-toggle-on"></i>
           <h3>ON</h3>
-        </div>
+        </label>
       )
     }else{
       return (
-        <div>
+        <label>
+          <input type="checkbox"/>
           <i onClick={this.handleSwitch} class="fas fa-toggle-off"></i>
           <h3>OFF</h3>
-        </div>
+        </label>
       )
     }
   }
