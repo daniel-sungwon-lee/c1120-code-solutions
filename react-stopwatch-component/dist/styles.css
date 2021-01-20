@@ -1,0 +1,19 @@
+.row{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5rem;
+}
+.watch{
+  border: solid 5px;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fas{
+  font-size: 33px;
+  margin-top: 1.5rem;
+}
