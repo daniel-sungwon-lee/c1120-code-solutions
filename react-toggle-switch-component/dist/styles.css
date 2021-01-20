@@ -1,0 +1,19 @@
+.off{
+  background-color: black;
+}
+div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+.fas{
+  font-size: 33px;
+  margin-right: 7px;
+}
+.fa-toggle-on{
+  color: #30B08E;
+}
