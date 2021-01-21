@@ -6,7 +6,8 @@ class ValidatedInput extends React.Component{
     super(props)
     this.handleChange=this.handleChange.bind(this)
     this.handleSubmit=this.handleSubmit.bind(this)
-    this.state={password:"", message:"A password is required", icon:"fas fa-times"}
+    this.state={password:""}
+    this.data = {message: "A password is required", icon: "fas fa-times"}
   }
 
   handleChange(event){
@@ -16,15 +17,15 @@ class ValidatedInput extends React.Component{
 
     this.setState({password: event.target.value})
     if(event.target.value.length<8){
-      this.setState({message:"Your password is too short", icon:"fas fa-times"})
+      this.data= {message:"Your password is too short", icon:"fas fa-times"}
     }else if(!regexNum.test(event.target.value)){
-      this.setState({message:"Password must contain a number", icon:"fas fa-times"})
+      this.data= {message:"Password must contain a number", icon:"fas fa-times"}
     }else if(!regexCap.test(event.target.value)){
-      this.setState({message:"Password must contain an uppercase letter", icon:"fas fa-times"})
+      this.data= {message:"Password must contain an uppercase letter", icon:"fas fa-times"}
     }else if(!regexChar.test(event.target.value)){
-      this.setState({message:"Password must contain a special character", icon:"fas fa-times"})
+      this.data= {message:"Password must contain a special character", icon:"fas fa-times"}
     }else {
-      this.setState({message:"", icon:"fas fa-check"})
+      this.data= {message:"", icon:"fas fa-check"}
     }
   }
 
@@ -40,10 +41,10 @@ class ValidatedInput extends React.Component{
           <label for="password">Password</label>
           <div className="text">
             <input onChange={this.handleChange} type="password" id="password" value={this.state.password} minlength="8" required/>
-            <i className={this.state.icon}></i>
+            <i className={this.data.icon}></i>
           </div>
         </form>
-        <p className="error">{this.state.message}</p>
+        <p className="error">{this.data.message}</p>
       </div>
     )
   }
