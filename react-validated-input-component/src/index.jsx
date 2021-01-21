@@ -6,15 +6,15 @@ class ValidatedInput extends React.Component{
     super(props)
     this.handleChange=this.handleChange.bind(this)
     this.handleSubmit=this.handleSubmit.bind(this)
-    this.state={password:"", pass:false, message:"A password is required"}
+    this.state={password:"", message:"A password is required", icon:"fas fa-times"}
   }
 
   handleChange(event){
     this.setState({password: event.target.value})
     if(event.target.value.length<8){
-      this.setState({pass:false, message:"Your password is too short"})
+      this.setState({message:"Your password is too short", icon:"fas fa-times"})
     } else if(event.target.value.length>=8){
-      this.setState({pass:true, message:""})
+      this.setState({message:"", icon:"fas fa-check"})
     }
   }
 
@@ -24,30 +24,16 @@ class ValidatedInput extends React.Component{
   }
 
   render(){
-    const pass = this.state.pass
-    if (!pass){
-      return(
-        <form onSubmit={this.handleSubmit}>
-          <label for="password">Password</label>
-          <div className="text">
-            <input onChange={this.handleChange} type="password" id="password" value={this.state.password} minlength="8" required/>
-            <i class="fas fa-times"></i>
-          </div>
-          <p>{this.state.message}</p>
-        </form>
-      )
-    } else if(pass){
-      return(
-        <form onSubmit={this.handleSubmit}>
-          <label for="password">Password</label>
-          <div className="text">
-            <input onChange={this.handleChange} type="password" id="password" value={this.state.password} minlength="8" required/>
-            <i class="fas fa-check"></i>
-          </div>
-          <p>{this.state.message}</p>
-        </form>
-      )
-    }
+    return(
+      <form onSubmit={this.handleSubmit}>
+        <label for="password">Password</label>
+        <div className="text">
+          <input onChange={this.handleChange} type="password" id="password" value={this.state.password} minlength="8" required/>
+          <i className={this.state.icon}></i>
+        </div>
+        <p>{this.state.message}</p>
+      </form>
+    )
   }
 }
 
