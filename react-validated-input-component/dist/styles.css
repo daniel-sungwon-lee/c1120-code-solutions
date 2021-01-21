@@ -1,8 +1,10 @@
-form{
+.container{
   position:absolute;
   left: 50%;
   top: 30%;
   transform: translate(-50%,-50%);
+  width: 209.5px;
+  height: 72px;
 }
 .text{
   display: flex;
@@ -19,7 +21,7 @@ form{
 .fas.fa-check{
   color: #30B08E;
 }
-p{
+.error{
   color: #ef233c;
   margin: 0;
 }

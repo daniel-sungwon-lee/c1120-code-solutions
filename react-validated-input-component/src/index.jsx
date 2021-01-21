@@ -35,14 +35,16 @@ class ValidatedInput extends React.Component{
 
   render(){
     return(
-      <form onSubmit={this.handleSubmit}>
-        <label for="password">Password</label>
-        <div className="text">
-          <input onChange={this.handleChange} type="password" id="password" value={this.state.password} minlength="8" required/>
-          <i className={this.state.icon}></i>
-        </div>
-        <p>{this.state.message}</p>
-      </form>
+      <div className="container">
+        <form onSubmit={this.handleSubmit}>
+          <label for="password">Password</label>
+          <div className="text">
+            <input onChange={this.handleChange} type="password" id="password" value={this.state.password} minlength="8" required/>
+            <i className={this.state.icon}></i>
+          </div>
+        </form>
+        <p className="error">{this.state.message}</p>
+      </div>
     )
   }
 }
