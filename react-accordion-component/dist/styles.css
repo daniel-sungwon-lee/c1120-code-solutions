@@ -1,0 +1,21 @@
+.hidden{
+  display: none;
+}
+.container{
+  width: 380px;
+  margin: auto;
+  margin-top: 5rem;
+}
+.row{
+  border: solid black 3px;
+  margin: 1px 0;
+}
+h2{
+  margin: 0.5rem;
+}
+p{
+  margin: 0.5rem;
+}
+.cursor{
+  cursor: pointer;
+}
