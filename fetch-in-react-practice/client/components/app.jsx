@@ -18,6 +18,7 @@ export default class App extends React.Component {
   }
 
   getAllTodos() {
+
     fetch("http://localhost:3000/api/todos")
       .then(res=>res.json())
       .then(data=>this.setState({todos:data}))
@@ -29,16 +30,15 @@ export default class App extends React.Component {
   }
 
   addTodo(newTodo) {
-    const myInit={
+
+    fetch("http://localhost:3000/api/todos", {
       method:"POST",
-      headers:{"Content-Type":"application/json"}
-
-    }
-
-    fetch("http://localhost:3000/api/todos", myInit)
+      headers:{"Content-Type": "application/json"},
+      body: JSON.stringify(newTodo)
+    })
       .then(res=>res.json())
-      .then(data=>{
-        console.log(data)
+      .then(todo=>{
+        this.setState({todos:this.state.todos.push(todo)})
       })
 
     /**
@@ -52,6 +52,24 @@ export default class App extends React.Component {
   }
 
   toggleCompleted(todoId) {
+
+    const changedTodo=this.state.todos.find(todo => todo.todoId === todoId)
+    changedTodo.isCompleted
+      ? changedTodo.isCompleted=false
+      : changedTodo.isCompleted=true
+
+    const reqBody={"isCompleted": changedTodo.isCompleted}
+
+    fetch(`http://localhost:3000/api/todos/${todoId}`, {
+      method: "PATCH",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(reqBody)
+    })
+      .then(res=>res.json())
+      .then(changedTodo=>{
+        this.setState({todos: this.state.todos.push(changedTodo)})
+      })
+
     /**
      * Find the index of the todo with the matching todoId in the state array.
      * Get its "isCompleted" status.
