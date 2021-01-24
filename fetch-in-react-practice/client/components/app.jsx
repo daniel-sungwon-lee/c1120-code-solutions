@@ -37,8 +37,9 @@ export default class App extends React.Component {
       body: JSON.stringify(newTodo)
     })
       .then(res=>res.json())
-      .then(todo=>{
-        this.setState({todos:this.state.todos.push(todo)})
+      .then(newTodo=>{
+        this.state.todos.push(newTodo)
+        this.setState({todos:this.state.todos})
       })
 
     /**
@@ -67,13 +68,14 @@ export default class App extends React.Component {
     })
       .then(res=>res.json())
       .then(changedTodo=>{
+
         const updatedTodos=this.state.todos.map(todo=>{
-          todo.todoId===changedTodo.todoId
+         return todo.todoId===changedTodo.todoId
             ? Object.assign(todo,changedTodo)
             : todo
         })
 
-        this.setState({todos: updatedTodos})
+        this.setState({todos:updatedTodos})
       })
 
     /**
