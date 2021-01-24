@@ -67,7 +67,13 @@ export default class App extends React.Component {
     })
       .then(res=>res.json())
       .then(changedTodo=>{
-        this.setState({todos: this.state.todos.push(changedTodo)})
+        const updatedTodos=this.state.todos.map(todo=>{
+          todo.todoId===changedTodo.todoId
+            ? Object.assign(todo,changedTodo)
+            : todo
+        })
+
+        this.setState({todos: updatedTodos})
       })
 
     /**
