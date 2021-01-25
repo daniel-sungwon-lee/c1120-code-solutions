@@ -38,8 +38,7 @@ export default class App extends React.Component {
     })
       .then(res=>res.json())
       .then(newTodo=>{
-        this.state.todos.push(newTodo)
-        this.setState({todos:this.state.todos})
+        this.setState({todos:[...this.state.todos, newTodo]})
       })
 
     /**
