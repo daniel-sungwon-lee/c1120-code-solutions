@@ -38,30 +38,36 @@ class Accordion extends React.Component{
 
   render(){
     return (
-      <div className="container">
-        <div onClick={this.handleClick} id="html" className="row cursor">
-          <h2 id="html">Hypertext Markup Language</h2>
-        </div>
-        <div id="text" className="hidden">
-          <p>{this.props.content[0].text}</p>
-        </div>
-        <div onClick={this.handleClick} id="css" className="row cursor">
-          <h2 id="css">Cascading Style Sheets</h2>
-        </div>
-        <div id="text" className="hidden">
-          <p>{this.props.content[1].text}</p>
-        </div>
-        <div onClick={this.handleClick} id="js" className="row cursor">
-          <h2 id="js">JavaScript</h2>
-        </div>
-        <div id="text" className="hidden">
-          <p>{this.props.content[2].text}</p>
-        </div>
-      </div>
+      <AccordionR content={content} handleClick={this.handleClick}/>
     )
   }
 }
 
 ReactDOM.render(
-  <Accordion content={content}/>,document.querySelector("#root")
+  <Accordion />,document.querySelector("#root")
 )
+
+function AccordionR(props){
+  return (
+    <div className="container">
+      <div onClick={props.handleClick} id="html" className="row cursor">
+        <h2 id="html">Hypertext Markup Language</h2>
+      </div>
+      <div id="text" className="hidden">
+        <p>{props.content[0].text}</p>
+      </div>
+      <div onClick={props.handleClick} id="css" className="row cursor">
+        <h2 id="css">Cascading Style Sheets</h2>
+      </div>
+      <div id="text" className="hidden">
+        <p>{props.content[1].text}</p>
+      </div>
+      <div onClick={props.handleClick} id="js" className="row cursor">
+        <h2 id="js">JavaScript</h2>
+      </div>
+      <div id="text" className="hidden">
+        <p>{props.content[2].text}</p>
+      </div>
+    </div>
+  )
+}
