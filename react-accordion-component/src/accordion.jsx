@@ -1,74 +1,45 @@
 import React from "react"
 
-const content = [
-  {
-    lang: "HTML",
-    text: "Hypertext Markup Language (HTML) is the standard markup language for creating web pages and web applications. With Cascading Style Sheets (CSS) and JavaScript, it forms a triad of cornerstone technologies for the World Wide Web."
-  },
-  {
-    lang: "CSS",
-    text: "Cascading Style Sheets (CSS) is a style sheet language used for describing the presentation of a document written in a markup language such as HTML.CSS is a cornerstone technology of the World Wide Web, alongside HTML and JavaScript."
-  },
-  {
-    lang: "JS",
-    text: "JavaScript, often abbreviated as JS, is a high-level, interpreted programming language that conforms to the ECMAScript specification. JavaScript has curly-bracket syntax, dynamic typing, prototype-based object-orientation, and first-class functions."
-  }
-]
-
 class Accordion extends React.Component {
   constructor(props) {
     super(props)
+    this.state={openId:null}
     this.handleClick = this.handleClick.bind(this)
     this.handleDbClick = this.handleDbClick.bind(this)
   }
 
-  handleClick(event) {
-    const $textContent = document.querySelectorAll("[data-view]")
-    const id = event.target.getAttribute("id")
-
-    for (let i = 0; i < $textContent.length; i++) {
-      $textContent[i].getAttribute("id") === `${id}-content`
-        ? $textContent[i].className = "row"
-        : $textContent[i].className = "row hidden"
-    }
+  handleClick(clickedId) {
+    this.setState({openId:clickedId})
   }
 
-  handleDbClick(event) {
-    const $textContent = document.querySelectorAll("[data-view]")
-
-    $textContent.forEach(node => node.className = "row hidden")
+  handleDbClick() {
+    this.setState({openId:null})
   }
 
   render() {
     return (
-      <AccordionR content={content} handleClick={this.handleClick} handleDbClick={this.handleDbClick} />
+      <div className="container">
+        {
+          this.props.content.map(obj=>{
+            let contentClass="row hidden"
+            if(this.state.openId===obj.id){
+              contentClass="row"
+            }
+            return (
+              <div onClick={()=>this.handleClick(obj.id)} onDoubleClick={this.handleDbClick}>
+                <div className="row cursor">
+                  <h2>{obj.lang}</h2>
+                </div>
+                <div className={contentClass}>
+                  <p>{obj.text}</p>
+                </div>
+              </div>
+            )
+          })
+        }
+      </div>
     )
   }
 }
 
-function AccordionR(props) {
-  return (
-    <div className="container">
-      <div onClick={props.handleClick} onDoubleClick={props.handleDbClick} id="html" className="row cursor">
-        <h2 id="html">Hypertext Markup Language</h2>
-      </div>
-      <div data-view="html" id="html-content" className="row hidden">
-        <p>{props.content[0].text}</p>
-      </div>
-      <div onClick={props.handleClick} onDoubleClick={props.handleDbClick} id="css" className="row cursor">
-        <h2 id="css">Cascading Style Sheets</h2>
-      </div>
-      <div data-view="css" id="css-content" className="row hidden">
-        <p>{props.content[1].text}</p>
-      </div>
-      <div onClick={props.handleClick} onDoubleClick={props.handleDbClick} id="js" className="row cursor">
-        <h2 id="js">JavaScript</h2>
-      </div>
-      <div data-view="js" id="js-content" className="row hidden">
-        <p>{props.content[2].text}</p>
-      </div>
-    </div>
-  )
-}
-
-export {Accordion, AccordionR}
+export default Accordion
