@@ -20,25 +20,52 @@ class Accordion extends React.Component{
   constructor(props){
     super(props)
     this.handleClick=this.handleClick.bind(this)
-    this.state={display:"hidden"}
+    this.handleDbClick=this.handleDbClick.bind(this)
   }
 
   handleClick(event){
-    if(event.target.matches("#html")){
-      event.target.closest(".row").nextSibling.className="row"
+    const $textContent=document.querySelectorAll("[data-view]")
 
+    if(event.target.matches("#html")){
+      for (let i =0; i<$textContent.length;i++){
+        if($textContent[i].getAttribute("id")==="html-content"){
+          $textContent[i].className="row"
+
+        }else {
+          $textContent[i].className="row hidden"
+        }
+      }
     } else if(event.target.matches("#css")){
-      event.target.closest(".row").nextSibling.className="row"
+      for (let i = 0; i < $textContent.length; i++) {
+        if ($textContent[i].getAttribute("id") === "css-content") {
+          $textContent[i].className = "row"
+
+        } else {
+          $textContent[i].className = "row hidden"
+        }
+      }
 
     } else if(event.target.matches("#js")){
-      event.target.closest(".row").nextSibling.className="row"
+      for (let i = 0; i < $textContent.length; i++) {
+        if ($textContent[i].getAttribute("id") === "js-content") {
+          $textContent[i].className = "row"
 
+        } else {
+          $textContent[i].className = "row hidden"
+        }
+      }
     }
+  }
+
+  handleDbClick(event){
+    const $textContent=document.querySelectorAll("[data-view]")
+
+    $textContent.forEach(node=>node.className="row hidden")
   }
 
   render(){
     return (
-      <AccordionR content={content} handleClick={this.handleClick}/>
+      <AccordionR content={content} handleClick={this.handleClick} handleDbClick={this.handleDbClick}/>
     )
   }
 }
@@ -47,25 +74,26 @@ ReactDOM.render(
   <Accordion />,document.querySelector("#root")
 )
 
+
 function AccordionR(props){
   return (
     <div className="container">
-      <div onClick={props.handleClick} id="html" className="row cursor">
+      <div onClick={props.handleClick} onDoubleClick={props.handleDbClick} id="html" className="row cursor">
         <h2 id="html">Hypertext Markup Language</h2>
       </div>
-      <div id="text" className="hidden">
+      <div data-view="html" id="html-content" className="row hidden">
         <p>{props.content[0].text}</p>
       </div>
-      <div onClick={props.handleClick} id="css" className="row cursor">
+      <div onClick={props.handleClick} onDoubleClick={props.handleDbClick} id="css" className="row cursor">
         <h2 id="css">Cascading Style Sheets</h2>
       </div>
-      <div id="text" className="hidden">
+      <div data-view="css" id="css-content" className="row hidden">
         <p>{props.content[1].text}</p>
       </div>
-      <div onClick={props.handleClick} id="js" className="row cursor">
+      <div onClick={props.handleClick} onDoubleClick={props.handleDbClick} id="js" className="row cursor">
         <h2 id="js">JavaScript</h2>
       </div>
-      <div id="text" className="hidden">
+      <div data-view="js" id="js-content" className="row hidden">
         <p>{props.content[2].text}</p>
       </div>
     </div>
