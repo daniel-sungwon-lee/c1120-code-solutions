@@ -14,11 +14,27 @@ class Carousel extends React.Component{
   render(){
     return (
       <div className="container">
-        <div className="row">
-          <div>
-            <img>
-          </div>
-        </div>
+        {
+          this.props.images.map(image=>{
+
+            return (
+              <div className="row">
+                <div>
+                  <img src={image.path} alt="pokemon"/>
+                </div>
+                <div className="dots">
+                  <i class="far fa-circle"></i>
+                </div>
+                <div className="left-arrow">
+                  <i class="fas fa-angle-left"></i>
+                </div>
+                <div className="right-arrow">
+                  <i class="fas fa-angle-right"></i>
+                </div>
+              </div>
+            )
+          })
+        }
       </div>
     )
   }
