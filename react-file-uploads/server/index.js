@@ -4,6 +4,7 @@ const express = require('express');
 const ClientError = require('./client-error');
 const errorMiddleware = require('./error-middleware');
 const uploadsMiddleware = require('./uploads-middleware');
+const path = require("path")
 
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL
@@ -20,6 +21,23 @@ app.post('/api/uploads', uploadsMiddleware, (req, res, next) => {
   if (!caption) {
     throw new ClientError(400, 'caption is a required field');
   }
+
+  const imgURL = path.join("/images", req.file.filename)
+
+  const sql=`
+  insert into "images" ("url","caption")
+  values ($1,$2)
+  returning *
+  `
+
+  const params=[imgURL, caption]
+
+  db.query(sql,params)
+    .then(result=>{
+      res.json(result.rows[0])
+    })
+    .catch(err=>next(err))
+
   /**
    * - create a url for the image by combining '/images' with req.file.filename
    * - insert the "caption" and "url" into the "images" table
